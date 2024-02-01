@@ -1,6 +1,6 @@
 {
   "name": "@cniot/react-native-map-linking",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "Use a third-party map plugin for navigation, compatible android and ios. add navigate method",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/iwubida/react-native-map-linking#readme",
   "dependencies": {
-    "react-native-general-actionsheet": "^1.0.3"
+    "@dachongziy/react-native-general-actionsheet": "^1.0.1"
   },
   "devDependencies": {
     "eslint-plugin-automatic": "^0.2.6"

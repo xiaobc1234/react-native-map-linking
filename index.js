@@ -1,5 +1,5 @@
 import { Linking, ActionSheetIOS, Platform } from "react-native";
-import ActionSheet from "react-native-general-actionsheet";
+import ActionSheet from "@dachongziy/react-native-general-actionsheet";
 
 // 腾讯地图开发者key
 let tmapKey = "";
