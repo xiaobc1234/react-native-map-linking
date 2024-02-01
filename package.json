@@ -1,6 +1,6 @@
 {
   "name": "@cniot/react-native-map-linking",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Use a third-party map plugin for navigation, compatible android and ios. add navigate method",
   "main": "index.js",
   "scripts": {

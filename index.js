@@ -193,7 +193,7 @@ const navigate = (distLocation) => {
       [
         "百度地图",
         `bdapp://map/direction?origin=&destination=name:${
-          destLocation.title
+          distLocation.title
         }|latlng:${distLocation.lat},${
           distLocation.lng
         }&mode=driving&coord_type=${
@@ -213,7 +213,7 @@ const navigate = (distLocation) => {
       [
         "百度地图",
         `baidumap://map/direction?origin=&destination=name:${
-          destLocation.title
+          distLocation.title
         }|latlng:${distLocation.lat},${
           distLocation.lng
         }&mode=driving&coord_type=${
