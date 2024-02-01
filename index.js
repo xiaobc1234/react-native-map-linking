@@ -9,15 +9,15 @@ const DownloadUrl = {
   android: {
     GaoDe: "http://mobile.amap.com",
     BaiDu: "http://map.baidu.com",
-    TengXun: `https://pr.map.qq.com/j/tmap/download?key=${tmapKey}`
+    TengXun: `https://pr.map.qq.com/j/tmap/download?key=${tmapKey}`,
   },
   ios: {
     GaoDe:
       "https://itunes.apple.com/cn/app/gao-tu-zhuan-ye-shou-ji-tu/id461703208?mt=8",
     BaiDu:
       "https://itunes.apple.com/cn/app/bai-du-tu-shou-ji-tu-lu-xian/id452186370?mt=8",
-    TengXun: `https://pr.map.qq.com/j/tmap/download?key=${tmapKey}`
-  }
+    TengXun: `https://pr.map.qq.com/j/tmap/download?key=${tmapKey}`,
+  },
 };
 
 // 第三方地图应用Url
@@ -55,69 +55,35 @@ const openUrl = ({ startLocation, destLocation, mode, type, appName }) => {
     return [
       [
         "高德地图",
-        `amapuri://route/plan/?sourceApplication=${appName}&slat=${
-          startLocation.lat
-        }&slon=${startLocation.lng}&sname=${startLocation.title}&dlat=${
-          destLocation.lat
-        }&dlon=${destLocation.lng}&dname=${
-          destLocation.title
-        }&dev=${GaoDeDev}&m=0&t=${GaoDeT}&rideType=elebike`
+        `amapuri://route/plan/?sourceApplication=${appName}&slat=${startLocation.lat}&slon=${startLocation.lng}&sname=${startLocation.title}&dlat=${destLocation.lat}&dlon=${destLocation.lng}&dname=${destLocation.title}&dev=${GaoDeDev}&m=0&t=${GaoDeT}&rideType=elebike`,
       ],
       [
         "百度地图",
-        `baidumap://map/direction?origin=name:${startLocation.title}|latlng:${
-          startLocation.lat
-        },${startLocation.lng}&destination=name:${destLocation.title}|latlng:${
-          destLocation.lat
-        },${
-          destLocation.lng
-        }&mode=${BaiDuMode}&coord_type=${BaiDuCoordType}&src=${appName}`
+        `baidumap://map/direction?origin=name:${startLocation.title}|latlng:${startLocation.lat},${startLocation.lng}&destination=name:${destLocation.title}|latlng:${destLocation.lat},${destLocation.lng}&mode=${BaiDuMode}&coord_type=${BaiDuCoordType}&src=${appName}`,
       ],
       [
         "腾讯地图",
-        `qqmap://map/routeplan?type=${TengXunType}&from=${
-          startLocation.title
-        }&fromcoord=${startLocation.lat},${startLocation.lng}&to=${
-          destLocation.title
-        }&tocoord=${destLocation.lat},${destLocation.lng}&referer=${tmapKey}`
-      ]
+        `qqmap://map/routeplan?type=${TengXunType}&from=${startLocation.title}&fromcoord=${startLocation.lat},${startLocation.lng}&to=${destLocation.title}&tocoord=${destLocation.lat},${destLocation.lng}&referer=${tmapKey}`,
+      ],
     ];
   }
   return [
     [
       "高德地图",
-      `iosamap://path?sourceApplication=${appName}&slat=${
-        startLocation.lat
-      }&slon=${startLocation.lng}&sname=${startLocation.title}&dlat=${
-        destLocation.lat
-      }&dlon=${destLocation.lng}&dname=${
-        destLocation.title
-      }&dev=${GaoDeDev}&m=0&t=${GaoDeT}&rideType=elebike`
+      `iosamap://path?sourceApplication=${appName}&slat=${startLocation.lat}&slon=${startLocation.lng}&sname=${startLocation.title}&dlat=${destLocation.lat}&dlon=${destLocation.lng}&dname=${destLocation.title}&dev=${GaoDeDev}&m=0&t=${GaoDeT}&rideType=elebike`,
     ],
     [
       "百度地图",
-      `baidumap://map/direction?origin=name:${startLocation.title}|latlng:${
-        startLocation.lat
-      },${startLocation.lng}&destination=name:${destLocation.title}|latlng:${
-        destLocation.lat
-      },${
-        destLocation.lng
-      }&mode=${BaiDuMode}&coord_type=${BaiDuCoordType}&src=${appName}`
+      `baidumap://map/direction?origin=name:${startLocation.title}|latlng:${startLocation.lat},${startLocation.lng}&destination=name:${destLocation.title}|latlng:${destLocation.lat},${destLocation.lng}&mode=${BaiDuMode}&coord_type=${BaiDuCoordType}&src=${appName}`,
     ],
     [
       "腾讯地图",
-      `qqmap://map/routeplan?type=${TengXunType}&from=${
-        startLocation.title
-      }&fromcoord=${startLocation.lat},${startLocation.lng}&to=${
-        destLocation.title
-      }&tocoord=${destLocation.lat},${destLocation.lng}&referer=${tmapKey}`
+      `qqmap://map/routeplan?type=${TengXunType}&from=${startLocation.title}&fromcoord=${startLocation.lat},${startLocation.lng}&to=${destLocation.title}&tocoord=${destLocation.lat},${destLocation.lng}&referer=${tmapKey}`,
     ],
     [
       "Apple地图",
-      `http://maps.apple.com/?ll=${destLocation.lat},${destLocation.lng}&q=${
-        destLocation.title
-      }&dirflg=${IOSDirflg}`
-    ]
+      `http://maps.apple.com/?ll=${destLocation.lat},${destLocation.lng}&q=${destLocation.title}&dirflg=${IOSDirflg}`,
+    ],
   ];
 };
 
@@ -130,9 +96,9 @@ const downloadTip = () => {
     {
       title: "未安装任何第三方地图应用，请选择其中一个应用",
       options: ["取消", "高德地图", "百度地图", "腾讯地图"],
-      cancelButtonIndex: 0
+      cancelButtonIndex: 0,
     },
-    buttonIndex => {
+    (buttonIndex) => {
       const { GaoDe, BaiDu, TengXun } = DownloadUrl[Platform.OS];
       let url = 0;
       switch (buttonIndex) {
@@ -148,7 +114,7 @@ const downloadTip = () => {
         default:
           url = GaoDe;
       }
-      Linking.canOpenURL(url).then(result => {
+      Linking.canOpenURL(url).then((result) => {
         if (result) {
           Linking.openURL(url);
         }
@@ -160,16 +126,16 @@ const downloadTip = () => {
 /**
  * 显示已经存在的第三方地图应用
  */
-const showExistApp = maps => {
+const showExistApp = (maps) => {
   const obj = Platform.OS === "android" ? ActionSheet : ActionSheetIOS;
-  const options = ["取消", ...maps.map(item => item[0])];
+  const options = ["取消", ...maps.map((item) => item[0])];
   obj.showActionSheetWithOptions(
     {
       title: "请选择其中一个地图应用",
       options,
-      cancelButtonIndex: 0
+      cancelButtonIndex: 0,
     },
-    buttonIndex => {
+    (buttonIndex) => {
       if (buttonIndex !== 0) {
         Linking.openURL(maps[buttonIndex - 1][1]);
       }
@@ -185,18 +151,93 @@ const planRoute = ({
   destLocation = {},
   mode = "ride",
   type = "gcj02",
-  appName = "MapLinking"
+  appName = "MapLinking",
 }) => {
   const maps = openUrl({ startLocation, destLocation, mode, type, appName });
-  const promises = maps.map(item => {
+  const promises = maps.map((item) => {
     return Linking.canOpenURL(item[1]);
   });
 
   Promise.all(promises)
-    .then(results => {
+    .then((results) => {
       return maps.filter((item, index) => results[index]);
     })
-    .then(choices => {
+    .then((choices) => {
+      if (!choices.length) {
+        // 系统内没有任何地图，展示推荐下载列表
+        downloadTip();
+      } else {
+        showExistApp(choices);
+      }
+    });
+};
+
+/**
+ * 启动导航
+ *
+ * @param distLocation 目的位置: {lat:40, lng: 118, type: 'gcj02', title: '终点'}
+ */
+const navigate = (distLocation) => {
+  const appName = distLocation?.appName || "MapLinking";
+
+  const urlMap = {
+    android: [
+      [
+        "高德地图",
+        `amapuri://navi?sourceApplication=${appName}&poiname=${
+          distLocation.title
+        }&lat=${distLocation.lat}&lon=${distLocation.lng}&dev=${
+          distLocation.type === "gcj02" ? "0" : "1"
+        }`,
+      ],
+      [
+        "百度地图",
+        `bdapp://map/direction?origin=&destination=name:${
+          destLocation.title
+        }|latlng:${distLocation.lat},${
+          distLocation.lng
+        }&mode=driving&coord_type=${
+          distLocation.type === "gcj02" ? "gcj02" : "wgs84"
+        }&src=${appName}`,
+      ],
+    ],
+    ios: [
+      [
+        "高德地图",
+        `iosamap://navi?sourceApplication=${appName}&poiname=${
+          distLocation.title
+        }&lat=${distLocation.lat}&lon=${distLocation.lng}&dev=${
+          distLocation.type === "gcj02" ? "0" : "1"
+        }`,
+      ],
+      [
+        "百度地图",
+        `baidumap://map/direction?origin=&destination=name:${
+          destLocation.title
+        }|latlng:${distLocation.lat},${
+          distLocation.lng
+        }&mode=driving&coord_type=${
+          distLocation.type === "gcj02" ? "gcj02" : "wgs84"
+        }&src=${appName}`,
+      ],
+      [
+        "Apple地图",
+        `http://maps.apple.com/?ll=${
+          distLocation.lat + "," + distLocation.lng
+        }&q=${distLocation.title}&dirflg=d`,
+      ],
+    ],
+  };
+  const maps = urlMap[Platform.OS];
+  const promises = maps.map((item) => {
+    return Linking.canOpenURL(item[1]);
+  });
+
+  Promise.all(promises)
+    .then((results) => {
+      return maps.filter((item, index) => results[index]);
+    })
+    .then((choices) => {
       if (!choices.length) {
         // 系统内没有任何地图，展示推荐下载列表
         downloadTip();
@@ -217,6 +258,7 @@ const init = ({ tmapKey: refererKey = "" }) => {
 const MapLinking = () => {};
 
 MapLinking.planRoute = planRoute;
+MapLinking.navigate = navigate;
 MapLinking.init = init;
 
 export default MapLinking;

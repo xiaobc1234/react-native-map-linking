@@ -117,7 +117,11 @@ planRoute API is supports following properties
 ```javascript
 import MapLinking from '@iwubida/react-native-map-linking';
 
+// 路径规划
 MapLinking.planRoute({ startLocation, destLocation, mode, type });
+
+// 从当前位置导航
+MapLinking.navigate(destLocation);
 ```
 
 | Name | Type | Default | Description |
